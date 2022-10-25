@@ -1,3 +1,4 @@
+from GCDSolverBinary import BinaryAlgorithm
 from GCDSolverEuclidean import EuclideanAlgorithm
 from GCDSolver import GCDSolver
 from GCDSolverPrimeFactorization import PrimeFactorization
@@ -5,7 +6,7 @@ from GCDSolverPrimeFactorization import PrimeFactorization
 
 class TestGCD:
     def run(self):
-        solvers: list[GCDSolver] = [EuclideanAlgorithm(), PrimeFactorization()]
+        solvers: list[GCDSolver] = [EuclideanAlgorithm(), BinaryAlgorithm(), PrimeFactorization()]
         self.__test_solvers(solvers)
 
     def __test_solvers(self, solvers: list[GCDSolver]):
@@ -23,7 +24,12 @@ class TestGCD:
         assert test(54, 24, 6)
 
         if type(solver) != PrimeFactorization:
-            big_number = 100_000_007
-            assert test(big_number, 100_000_009, 1)
+            # if True:
+            assert test(1234567890, 9876543210, 90)
+
+            big_number = 100_000_000_000_000_007
+            assert test(big_number, 100_000_000_000_000_009, 1)
             assert test(big_number, big_number, big_number)
             assert test(big_number, big_number * big_number, big_number)
+            assert test(big_number, big_number * big_number * big_number, big_number)
+            assert test(big_number, big_number * big_number * big_number * big_number, big_number)
