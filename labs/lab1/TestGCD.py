@@ -1,6 +1,6 @@
-from EuclideanAlgorithm import EuclideanAlgorithm
+from GCDSolverEuclidean import EuclideanAlgorithm
 from GCDSolver import GCDSolver
-from PrimeFactorization import PrimeFactorization
+from GCDSolverPrimeFactorization import PrimeFactorization
 
 
 class TestGCD:
