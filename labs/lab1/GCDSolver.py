@@ -5,3 +5,5 @@ class GCDSolver(ABC):
     @abstractmethod
     def solve(self, a: int, b: int) -> int:
         pass
+
+

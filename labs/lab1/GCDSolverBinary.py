@@ -4,6 +4,13 @@ from GCDSolver import GCDSolver
 # https://en.wikipedia.org/wiki/Greatest_common_divisor#Binary_GCD_algorithm
 class BinaryAlgorithm(GCDSolver):
     def solve(self, a: int, b: int) -> int:
+        if a == 0 and b == 0:
+            raise ValueError("a and b cannot both be 0")
+        if a == 0:
+            return b
+        if b == 0:
+            return a
+
         d: int = 0
 
         while a != b:

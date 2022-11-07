@@ -3,6 +3,13 @@ from GCDSolver import GCDSolver
 
 class PrimeFactorization(GCDSolver):
     def solve(self, a: int, b: int) -> int:
+        if a == 0 and b == 0:
+            raise ValueError("a and b cannot both be 0")
+        if a == 0:
+            return b
+        if b == 0:
+            return a
+
         gcd = 1
         prime_factorization_of_a = self.prime_factor(a)
         prime_factorization_of_b = self.prime_factor(b)

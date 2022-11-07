@@ -18,6 +18,15 @@ class TestGCD:
     def __test_solver(self, solver):
         test = lambda a, b, expected: solver.solve(a, b) == expected
 
+        # assert test(1, 1, 2) # AssertionError
+        try:
+            assert test(0, 0, 0)
+            assert False
+        except ValueError:
+            pass
+        assert test(0, 5, 5)
+        assert test(7, 0, 7)
+
         assert test(10, 5, 5)
         assert test(3, 12, 3)
         assert test(4, 12, 4)
