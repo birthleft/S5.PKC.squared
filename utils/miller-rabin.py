@@ -1,6 +1,5 @@
 """
-NOTE: it doesn't answer whether the number is prime or not. It just prints the sequence of values that are computed.
-
+NOTE: it doesn't replace irrelevant values with 'x'.
 
 Also, the Miller-Rabin test is not a deterministic test. It is a probabilistic test.
 """
@@ -66,7 +65,7 @@ def miller_rabin(n: int):
 
     compute_and_print_the_relevant_powers_of_2(t, n)
 
-    is_prime = 'TBD'
+    is_prime = True
     for a in [2, 3, 5]:
         sequence = []
         print(f"a = {a}")
@@ -80,6 +79,9 @@ def miller_rabin(n: int):
             print(f"{a}^(2^{r} * {t}) mod {n} = {current_sequence_value}")
             sequence.append(current_sequence_value)
         print()
+
+        # Step 3 of https://moodle.cs.ubbcluj.ro/pluginfile.php/46227/mod_resource/content/1/pkc-c03.pdf#page=20
+        is_prime = sequence[0] == 1 or n - 1 in sequence[:-1]
 
     return is_prime
 
@@ -98,5 +100,5 @@ def choose_value():
 
 
 if __name__ == '__main__':
-    print(f"Miller-Rabin: {miller_rabin(choose_value())}")
+    print(f"Miller-Rabin (aka: is n prime?): {miller_rabin(choose_value())}")
     print(f"Don't trust me? Try a Miller-Rabin calculator https://planetcalc.com/8995/")
