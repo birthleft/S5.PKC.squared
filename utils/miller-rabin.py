@@ -59,23 +59,28 @@ def miller_rabin(n: int):
 
     compute_and_print_the_relevant_powers_of_2(t, n)
 
+    is_prime = True
     for a in [2, 3, 5]:
         sequence = []
         print(f"a = {a}")
 
         # we need to compute a^t, a^(2t), a^(4t), ..., a^(2^s * t)
-        for i in range(s + 1):  # 0, 1, 2, ..., s. Why? Step 2 of https://moodle.cs.ubbcluj.ro/pluginfile.php/46227/mod_resource/content/1/pkc-c03.pdf#page=20
-            current_sequence_element = repeated_squaring_modular_exponentiation(a, 2 ** i * t, n)
-            print(f"{a}^(2 ^ {i} * {t}) = {current_sequence_element}")
+        for r in range(s + 1):  # 0, 1, 2, ..., s. Why? Step 2 of https://moodle.cs.ubbcluj.ro/pluginfile.php/46227/mod_resource/content/1/pkc-c03.pdf#page=20
+            current_sequence_element = 'x' if not is_prime or (r == s and sequence[r - 1] != -1) else repeated_squaring_modular_exponentiation(a, 2 ** r * t, n)
+            current_sequence_element = -1 if type(current_sequence_element) == int and current_sequence_element + 1 == n else current_sequence_element
+            sequence.append(current_sequence_element)
+            print(f"{a}^(2 ^ {r} * {t}) = {current_sequence_element}")
 
-        print()
+        # checking if neither the 2nd condition is met
+        if is_prime and sequence[-1] != 1:
+            is_prime = False
 
-    return True
+    return is_prime
 
 
 assert repeated_squaring_modular_exponentiation(42, 51, 73) == 17
 
 if __name__ == '__main__':
-    value = int(sys.argv[1]) if len(sys.argv) == 2 else 3017
+    value = int(sys.argv[1]) if len(sys.argv) == 2 else 5521
     print(f"Miller-Rabin: {miller_rabin(value)}")
     print(f"Don't trust me? Try a Miller-Rabin calculator https://planetcalc.com/8995/")
