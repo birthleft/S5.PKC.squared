@@ -28,7 +28,7 @@ def repeated_squaring_modular_exponentiation(base: int, exponent: int, modulus: 
 
 def compute_from_number_exponent_of_factor(number: int, factor: int):
     # This computes the exponent of a given number's given factor.
-    # 24 = 2^3 * 3 ==> compute_exponent_of_factor_from_number(24, 2) = 2
+    # 24 = 2^3 * 3 ==> compute_exponent_of_factor_from_number(24, 2) = 3
     exponent = 0
     while number % factor == 0:
         exponent += 1
