@@ -34,7 +34,7 @@ def compute_exponent_of_factor(number: int, factor: int):
     exponent = 0
     while number % factor == 0:
         exponent += 1
-        number /= 2
+        number /= factor
     return exponent
 
 
