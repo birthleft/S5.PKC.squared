@@ -19,5 +19,5 @@ def find_generators(order):
 
 
 if __name__ == '__main__':
-    for n in range(1, 100):
+    for n in range(2, 100):
         print(f'Generators of the cyclic group Z_{n}: {find_generators(n)}')
