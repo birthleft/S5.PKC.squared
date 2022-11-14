@@ -34,7 +34,11 @@ def compute_exponent_of_factor(number: int, factor: int):
     exponent = 0
     while number % factor == 0:
         exponent += 1
+<<<<<<< HEAD
+        number /= 2
+=======
         number /= factor
+>>>>>>> main
     return exponent
 
 
@@ -44,11 +48,18 @@ def number_as_sum_of_powers_of_2(number: int):
 
 
 def compute_and_print_the_relevant_powers_of_2(t, n):
+<<<<<<< HEAD
+    print(f"t = {bin(t)[2:]} = {number_as_sum_of_powers_of_2(t)}. powers of 2: {list([i for i in range(t.bit_length()) if is_set(t, i)])}")
+    print()
+    for i in range(0, t.bit_length()):
+        print(f"2^(2^{i}) = {2 ** 2 ** i % n}", end=' ')
+=======
     print(f"t = {bin(t)[2:]} = {number_as_sum_of_powers_of_2(t)}.", end=' ')
     print(f"\n\trelevant exponents: {list([i for i in range(t.bit_length()) if is_set(t, i)])}")
     print()
     for i in range(0, t.bit_length()):
         print(f"2^(2^{i}) mod {n} = {(2 ** 2 ** i) % n}", end=' ')
+>>>>>>> main
         print('RELEVANT' if is_set(t, i) else '')
     print()
 
@@ -71,6 +82,17 @@ def miller_rabin(n: int):
         print(f"a = {a}")
 
         # we need to compute a^t, a^(2t), a^(4t), ..., a^(2^s * t)
+<<<<<<< HEAD
+        for r in range(s + 1):  # 0, 1, 2, ..., s. Why? Step 2 of https://moodle.cs.ubbcluj.ro/pluginfile.php/46227/mod_resource/content/1/pkc-c03.pdf#page=20
+            current_sequence_element = 'x' if not is_prime or (r == s and sequence[r - 1] != -1) else repeated_squaring_modular_exponentiation(a, 2 ** r * t, n)
+            current_sequence_element = -1 if type(current_sequence_element) == int and current_sequence_element + 1 == n else current_sequence_element
+            sequence.append(current_sequence_element)
+            print(f"{a}^(2 ^ {r} * {t}) = {current_sequence_element}")
+
+        # checking if neither the 2nd condition is met
+        if is_prime and sequence[-1] != 1:
+            is_prime = False
+=======
         # Step 2 of https://moodle.cs.ubbcluj.ro/pluginfile.php/46227/mod_resource/content/1/pkc-c03.pdf#page=20
         sequence_size = 5  # normally s + 1, but for the quiz it's 5
         for r in range(sequence_size):
@@ -82,12 +104,18 @@ def miller_rabin(n: int):
 
         # Step 3 of https://moodle.cs.ubbcluj.ro/pluginfile.php/46227/mod_resource/content/1/pkc-c03.pdf#page=20
         is_prime = sequence[0] == 1 or n - 1 in sequence[:-1]
+>>>>>>> main
 
     return is_prime
 
 
 assert repeated_squaring_modular_exponentiation(42, 51, 73) == 17
 
+<<<<<<< HEAD
+if __name__ == '__main__':
+    value = int(sys.argv[1]) if len(sys.argv) == 2 else 5521
+    print(f"Miller-Rabin: {miller_rabin(value)}")
+=======
 
 def choose_value():
     if len(sys.argv) != 2:
@@ -101,4 +129,5 @@ def choose_value():
 
 if __name__ == '__main__':
     print(f"Miller-Rabin (aka: is n prime?): {miller_rabin(choose_value())}")
+>>>>>>> main
     print(f"Don't trust me? Try a Miller-Rabin calculator https://planetcalc.com/8995/")
