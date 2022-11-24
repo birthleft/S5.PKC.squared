@@ -35,7 +35,7 @@ class Pollard:
                   + Style.YELLOW + f"{x_sequence[index] if not found else 'x'}" + Style.RESET, end="  ")
 
             x_sequence[index + 1] = f(x_sequence[index]) % number
-            print(f"x{Formatting.subscript(str(index))} = "
+            print(f"x{Formatting.subscript(str(index + 1))} = "
                   + Style.YELLOW + f"{x_sequence[index + 1] if not found else 'x'}" + Style.RESET, end="  ")
 
             divisor = greatest_common_divisor(abs(x_sequence[index + 1] - x_sequence[(index + 1) // 2]), number)
